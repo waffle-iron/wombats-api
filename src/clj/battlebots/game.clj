@@ -157,10 +157,10 @@
   [player-id]
   (fn [game-state command]
     (let [{:keys [cmd metadata]} command]
-      (cond
-       (= cmd "MOVE") (move-player player-id metadata game-state)
-       (= cmd "SHOOT") game-state ;; TODO
-       :else game-state))))
+      (condp = cmd
+        "MOVE" (move-player player-id metadata game-state)
+        "SHOOT" game-state ;; TODO
+        game-state))))
 
 (defn apply-decisions
   "Applies player decision to the current state of the game
